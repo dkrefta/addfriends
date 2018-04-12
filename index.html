@@ -10,6 +10,8 @@
   <div id='app'></div>
 
   <script type='text/babel'>
+
+
     function ActiveFriends (props) {
       return (
         <div>
@@ -44,6 +46,7 @@
     class App extends React.Component {
       constructor(props) {
         super(props)
+
         this.state = {
           friends: [
           {
@@ -121,9 +124,12 @@
               Submit
             </button>
             </div>
+            <button onClick={() => this.setState({
+              friends: []
+            })}> Clear All </button>
             <ActiveFriends
-              list={this.state.friends}
               onRemoveFriend={this.handleRemoveFriend}
+              list={this.state.friends.filter((friend) => friend.active === true)}
               onToggleFriend={this.handleToggleFriend}
             />
             <InactiveFriends
